@@ -22,6 +22,7 @@ Don't hesitate to send us an e-mail or report an issue, if something is broken (
 * `output` -- where modelling results in the form of json files are written
 * `written_models_full` -- where transformers are written to disk for pretraining and two-step finetuning with all 11 roots
 * `written_models_collapse` -- where transformers are written to disk for pretraining and two-step finetuning with 7 roots
+* `umap_plots` -- source code and data used for the umap plots from the paper. Please see the README.md file there.
 
 
 ## Requirements
