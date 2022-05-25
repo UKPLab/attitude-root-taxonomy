@@ -1,4 +1,4 @@
-# TA Psychological Taxonomy of Anti-Vaccination Arguments: Systematic Literature Review and Text Modeling -- UMAP plots
+# A Psychological Taxonomy of Anti-Vaccination Arguments: Systematic Literature Review and Text Modeling -- UMAP plots
 
 Source code for the UMAP plots from A Psychological Taxonomy of Anti-Vaccination Arguments: Systematic Literature Review and Text Modeling (https://osf.io/e4yp6/)
 
@@ -26,10 +26,12 @@ The plots from the paper were made in Python 3.8.10 on an NVIDIA GeForce RTX 306
 ## Installation
 To setup, please follow the instructions below.
 
-`python -m venv mvenv`
-`source mvenv/bin/activate`
-`pip install -r requirements.txt`
-`pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html`
+````
+python -m venv mvenv
+source mvenv/bin/activate
+pip install -r requirements.txt
+pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+````
  
 Then, you can run the code with in a Jupyter notebook for ease of viewing: `jupyter notebook`
 
