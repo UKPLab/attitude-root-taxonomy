@@ -39,6 +39,7 @@ pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.
  
 Then, you can run the code with `python main.py`.
 
+
 ### Expected results
 Once finished, the results will be written to json files in the "output"  folder. The "mean_f1_mac" field is the macro F1 metric reported in the paper.
 
@@ -53,3 +54,5 @@ Once finished, the results will be written to json files in the "output"  folder
 * "st_baseline" is the Sentence Transformer and logistic regression.
 * "setfit_baseline" is standard fine-tuning with SetFit.
 * "setfit_pretrain" is two-step fine-tuning with SetFit.
+
+If you wish to see a summary of the results reported in the paper you can use `python summarize.py`.
