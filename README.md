@@ -30,24 +30,26 @@ Our results were computed in Python 3.6.8 with a 40gb amphere A100 GPU. Note tha
 
 ## Installation
 To setup, please follow the instructions below.
-`python -m venv mvenv`
-`source mvenv/bin/activate`
-`pip install -r requirements.txt`
-`pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html`
+```
+python -m venv mvenv
+source mvenv/bin/activate
+pip install -r requirements.txt
+pip install torch==1.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+````
  
 Then, you can run the code with `python main.py`.
 
 ### Expected results
 Once finished, the results will be written to json files in the "output"  folder. The "mean_f1_mac" field is the macro F1 metric reported in the paper.
 
-"full" refers to the 11 attitude roots while "collapse" refers to the 7 attitude root scenario.
-"test" refers evalutation results, which are reported in the paper. "train" refers to model optimization results.
-"transformer" refers to RoBERTa-base from the paper.
-"setfit" refers to the SetFit from the paper.
-"transformer_pretrain" is modelling done on Study 1 data and setups the two-step finetuning results. The results here are not reported in the paper.
-"zero" refers to the "zero-shot" results
-"transformer_baseline" is standard fine-tuning results with RoBERTa-base on Study 2.
-"use_ft_transformer" is the two-step fine-tuning with RoBERTa-base.
-"st_baseline" is the Sentence Transformer and logistic regression.
-"setfit_baseline" is standard fine-tuning with SetFit.
-"setfit_pretrain" is two-step fine-tuning with SetFit.
+* "full" refers to the 11 attitude roots while "collapse" refers to the 7 attitude root scenario.
+* "test" refers evalutation results, which are reported in the paper. "train" refers to model optimization results.
+* "transformer" refers to RoBERTa-base from the paper.
+* "setfit" refers to the SetFit from the paper.
+* "transformer_pretrain" is modelling done on Study 1 data and setups the two-step finetuning results. The results here are not reported in the paper.
+* "zero" refers to the "zero-shot" results
+* "transformer_baseline" is standard fine-tuning results with RoBERTa-base on Study 2.
+* "use_ft_transformer" is the two-step fine-tuning with RoBERTa-base.
+* "st_baseline" is the Sentence Transformer and logistic regression.
+* "setfit_baseline" is standard fine-tuning with SetFit.
+* "setfit_pretrain" is two-step fine-tuning with SetFit.
