@@ -5,7 +5,7 @@ from scipy.special import expit
 
 
 def write_eval_json(preds, MODE, split):
-    metric_dict = {"mac": []}
+    metric_dict = {"mac": [], "ap": []}
     threshold = 0.50
     for pred in preds:
 
@@ -23,7 +23,13 @@ def write_eval_json(preds, MODE, split):
             metrics.f1_score(labels, outputs, zero_division=1, average="macro") * 100
         )
 
+        avg_pre = (
+            metrics.average_precision_score(labels, logits, average='samples')*100
+        )
+
         metric_dict["mac"].append(macro)
+        metric_dict["ap"].append(avg_pre)
+
 
     json_dict = dict()
     for metric, lst in metric_dict.items():
