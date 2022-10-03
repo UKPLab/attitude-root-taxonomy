@@ -5,10 +5,9 @@ import os
 import random
 from sentence_transformers import SentenceTransformer, InputExample, losses
 from torch.utils.data import DataLoader
-from setup_utils import seed_everything
+from model_utils import seed_everything, SEED
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-SEED = 0
 
 
 def sentence_pairs_generation(sentences, labels, pairs):
@@ -32,20 +31,22 @@ def sentence_pairs_generation(sentences, labels, pairs):
         pairs.append(InputExample(texts=[currentSentence, negSentence], label=0.0))
 
     # return a 2-tuple of our image pairs and labels
-    return pairs
+    # this was missing a ()
+    return (pairs)
 
 
-def SetFit(train_df, sbert=None):
+def SetFit(train_df, args, sbert=None):
+    st_model = args.st_model
+    train_df = train_df.drop("multi_labels", axis=1)
     seed_everything(SEED)
-    st_model = "paraphrase-mpnet-base-v2"
     num_training = 32
     num_itr = 5
     text_col = train_df.columns.values[0]
     category_col = train_df.columns.values[1]
 
     examples = []
-    for label in train_df["labels"].unique():
-        subset = train_df[train_df["labels"] == label]
+    for label in train_df[category_col].unique():
+        subset = train_df[train_df[category_col] == label]
         if len(subset) > num_training:
             examples.append(subset.sample(num_training))
         else:
@@ -67,11 +68,19 @@ def SetFit(train_df, sbert=None):
     # S-BERT adaptation
     train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=16)
     train_loss = losses.CosineSimilarityLoss(model)
-    model.fit(
-        train_objectives=[(train_dataloader, train_loss)],
-        epochs=5,
-        warmup_steps=10,
-        show_progress_bar=True,
-    )
+    if sbert == None and args.mode in ['setfit_zero_shot', 'setfit_tsft']:
+        model.fit(
+            train_objectives=[(train_dataloader, train_loss)],
+            epochs=args.pretrain_epochs,
+            warmup_steps=10,
+            show_progress_bar=True,
+        )
+    else:
+        model.fit(
+            train_objectives=[(train_dataloader, train_loss)],
+            epochs=args.epochs,
+            warmup_steps=10,
+            show_progress_bar=True,
+        )
 
     return model
